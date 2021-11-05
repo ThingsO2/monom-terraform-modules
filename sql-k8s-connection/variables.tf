@@ -1,0 +1,37 @@
+variable "project" {
+  type = string
+}
+
+variable "region" {
+  type = string
+}
+
+variable "network_id" {
+  type = string
+}
+
+variable "network_name" {
+  type = string
+}
+
+variable "database_instance_name" {
+  type = string
+}
+
+variable "database_version" {
+  type = string
+}
+
+variable "database_tier" {
+  type    = string
+  default = "db-f1-micro"
+}
+
+variable "sql_database_name" {
+  type = string
+}
+
+variable "disk_type" {
+  type    = string
+  default = "PD_SSD"
+}
