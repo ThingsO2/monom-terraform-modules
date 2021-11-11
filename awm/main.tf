@@ -7,12 +7,8 @@ terraform {
   }
 }
 
-locals {
-  short_client_id = "${lower(var.client_name)}-${substr(var.client_id, 0, 8)}"
-}
-
 resource "google_container_node_pool" "this" {
-  name           = "${local.short_client_id}-awm"
+  name           = "awm-${var.client_id}"
   cluster        = var.node_pool_cluster_id
   node_count     = 1
   node_locations = [var.node_pool_node_location]
@@ -37,13 +33,13 @@ resource "google_container_node_pool" "this" {
 }
 
 resource "google_sql_database" "this" {
-  name     = local.short_client_id
+  name     = var.client_id
   project  = var.project
   instance = var.database_instance_name
 }
 
 resource "google_sql_user" "this" {
-  name     = local.short_client_id
+  name     = var.client_id
   project  = var.project
   instance = var.database_instance_name
   password = var.database_password
@@ -51,7 +47,7 @@ resource "google_sql_user" "this" {
 
 resource "kubernetes_secret" "sql" {
   metadata {
-    name      = "${local.short_client_id}-sql"
+    name      = "awm-sql"
     namespace = var.client_id
   }
 
@@ -65,32 +61,21 @@ resource "kubernetes_secret" "sql" {
 module "public_app" {
   source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=v1.0.1"
 
-  name        = local.short_client_id
+  name        = "awm-${var.client_id}"
   project     = var.project
   namespace   = var.client_id
-  domain      = local.short_client_id
+  domain      = "awm-${var.client_id}"
   root_domain = terraform.workspace == "pro" ? "monom.ai" : "dev.monom.ai"
-}
-
-module "firebase_sa" {
-  source = "github.com/ThingsO2/monom-terraform-modules//service-account?ref=v1.0.1"
-
-  account_id   = "awm-${local.short_client_id}-firebase"
-  display_name = "AWM ${local.short_client_id} firebase SA"
-  project      = var.project
-  sa_role_binding = [
-    "roles/firebaseauth.viewer",
-  ]
 }
 
 resource "kubernetes_secret" "firebase" {
   metadata {
-    name      = "${local.short_client_id}-firebase"
+    name      = "awm-firebase"
     namespace = var.client_id
   }
 
   data = {
-    file = module.firebase_sa.key_decode
+    file = var.firebase_service_account_key
   }
 
   type = "Opaque"

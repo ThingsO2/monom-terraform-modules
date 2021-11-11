@@ -36,3 +36,8 @@ variable "database_password" {
   type      = string
   sensitive = true
 }
+
+variable "firebase_service_account_key" {
+  type = string
+  sensitive = true
+}
