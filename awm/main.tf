@@ -63,8 +63,7 @@ resource "kubernetes_secret" "sql" {
 }
 
 module "public_app" {
-  #source = "github.com/ThingsO2/terraform-module-gcp-k8s-public-app?ref=v1.1.1"
-  source = "../../../terraform-module-gcp-k8s-public-app"
+  source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=v1.0.1"
 
   name        = local.short_client_id
   project     = var.project
@@ -74,7 +73,7 @@ module "public_app" {
 }
 
 module "firebase_sa" {
-  source = "../service-account"
+  source = "github.com/ThingsO2/monom-terraform-modules//service-account?ref=v1.0.1"
 
   account_id   = "awm-${local.short_client_id}-firebase"
   display_name = "AWM ${local.short_client_id} firebase SA"
