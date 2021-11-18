@@ -27,18 +27,27 @@ module "gke" {
   network_policy             = var.network_policy
   remove_default_node_pool   = true
   monitoring_service         = var.monitoring_service
+  cluster_autoscaling = {
+    enabled             = false
+    autoscaling_profile = "OPTIMIZE_UTILIZATION"
+    max_cpu_cores       = 0
+    min_cpu_cores       = 0
+    max_memory_gb       = 0
+    min_memory_gb       = 0
+    gpu_resources       = []
+  }
 
   node_pools = [
     {
-      name         = "pool-01"
-      machine_type = var.node_pool_machine_type
-      disk_size_gb = 50
-      node_count   = var.node_autoscaling == false ? var.node_count : null
-      min_count    = var.node_autoscaling == true ? var.node_pool_min_count : null
-      max_count    = var.node_autoscaling == true ? var.node_pool_max_count : null
-      auto_upgrade = true
-      auto_repair  = true
-      autoscaling  = var.node_autoscaling
+      name              = "pool-01"
+      machine_type      = var.node_pool_machine_type
+      disk_size_gb      = 50
+      node_count        = var.node_autoscaling == false ? var.node_count : null
+      min_count         = var.node_autoscaling == true ? var.node_pool_min_count : null
+      max_count         = var.node_autoscaling == true ? var.node_pool_max_count : null
+      auto_upgrade      = true
+      auto_repair       = true
+      autoscaling       = var.node_autoscaling
       max_pods_per_node = var.max_pods_per_node
     }
   ]
