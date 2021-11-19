@@ -7,7 +7,7 @@ output "database_instance_name" {
 }
 
 output "database_name" {
-  value = google_sql_database.this[0].name
+  value = try(google_sql_database.this[0].name, null)
 }
 
 output "database_instance_private_ip" {

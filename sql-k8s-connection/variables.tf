@@ -35,3 +35,8 @@ variable "disk_type" {
   type    = string
   default = "PD_SSD"
 }
+
+variable "enable_backup" {
+  type    = bool
+  default = false
+}

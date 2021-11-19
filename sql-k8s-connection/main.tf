@@ -21,8 +21,17 @@ resource "google_sql_database_instance" "this" {
       private_network = var.network_id
     }
     disk_type = var.disk_type
-  }
 
+    backup_configuration {
+      binary_log_enabled = var.enable_backup
+      enabled            = var.enable_backup
+      start_time         = "02:00"
+      location = var.region
+      backup_retention_settings {
+        retained_backups = 7
+      }
+    }
+  }
 }
 
 resource "google_sql_database" "this" {
