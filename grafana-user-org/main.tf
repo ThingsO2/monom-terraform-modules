@@ -10,7 +10,5 @@ resource "grafana_organization" "this" {
   name       = var.grafana_organization_name
   admin_user = grafana_user.this.id
 
-  admins = [
-    grafana_user.this.email,
-  ]
+  admins = concat(var.grafana_additional_admin_users, [grafana_user.this.email])
 }

@@ -47,6 +47,6 @@ resource "grafana_data_source" "bigquery" {
 }
 
 resource "grafana_api_key" "this" {
-  name = "app"
+  name = "app${var.client_project_id}"
   role = "Viewer"
 }

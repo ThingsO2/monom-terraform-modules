@@ -23,3 +23,8 @@ variable "grafana_user_is_admin" {
 variable "grafana_organization_name" {
   type = string
 }
+
+variable "grafana_additional_admin_users" {
+  type = list
+  default = []
+}
