@@ -18,6 +18,7 @@ module "sa_bigquery" {
 
   sa_role_binding = [
     "roles/bigquery.dataViewer",
+    "roles/bigquery.jobUser",
   ]
 }
 
@@ -31,18 +32,19 @@ module "sa_bigquery" {
 
 resource "grafana_data_source" "bigquery" {
 
-  name   = "BigQuery${var.client_project_id}"
-  type   = "doitintl-bigquery-datasource"
+  name = "BigQuery${var.client_project_id}"
+  type = "doitintl-bigquery-datasource"
 
   json_data {
     token_uri           = "https://oauth2.googleapis.com/token"
     authentication_type = "jwt"
     default_project     = var.project
     client_email        = module.sa_bigquery.email
+    default_region      = "EU"
   }
 
   secure_json_data {
-    private_key = module.sa_bigquery.key_decode
+    private_key = jsondecode(module.sa_bigquery.key_decode)["private_key"]
   }
 }
 
