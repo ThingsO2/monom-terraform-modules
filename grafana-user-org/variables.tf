@@ -24,7 +24,15 @@ variable "grafana_organization_name" {
   type = string
 }
 
+variable "client_project_id" {
+  type = string
+}
+
 variable "grafana_additional_admin_users" {
   type = list
   default = []
+}
+
+variable "mongo_connection_string" {
+  type = string
 }
