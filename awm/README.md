@@ -15,8 +15,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_firebase_sa"></a> [firebase\_sa](#module\_firebase\_sa) | ../service-account | n/a |
-| <a name="module_public_app"></a> [public\_app](#module\_public\_app) | ../../../terraform-module-gcp-k8s-public-app | n/a |
+| <a name="module_public_app"></a> [public\_app](#module\_public\_app) | github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app | v1.0.1 |
 
 ## Resources
 
@@ -36,6 +35,7 @@
 | <a name="input_client_name"></a> [client\_name](#input\_client\_name) | n/a | `string` | n/a | yes |
 | <a name="input_database_instance_name"></a> [database\_instance\_name](#input\_database\_instance\_name) | n/a | `string` | n/a | yes |
 | <a name="input_database_password"></a> [database\_password](#input\_database\_password) | n/a | `string` | n/a | yes |
+| <a name="input_firebase_service_account_key"></a> [firebase\_service\_account\_key](#input\_firebase\_service\_account\_key) | n/a | `string` | n/a | yes |
 | <a name="input_node_pool_cluster_id"></a> [node\_pool\_cluster\_id](#input\_node\_pool\_cluster\_id) | n/a | `string` | n/a | yes |
 | <a name="input_node_pool_machine_type"></a> [node\_pool\_machine\_type](#input\_node\_pool\_machine\_type) | n/a | `string` | `"e2-standard-4"` | no |
 | <a name="input_node_pool_node_location"></a> [node\_pool\_node\_location](#input\_node\_pool\_node\_location) | n/a | `string` | n/a | yes |
