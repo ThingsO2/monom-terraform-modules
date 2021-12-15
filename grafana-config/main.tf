@@ -21,6 +21,16 @@ module "sa_bigquery" {
   ]
 }
 
+data "terraform_remote_state" "project" {
+  backend = "remote"
+  config = {
+    organization = "monom-mvp-environment"
+    workspaces = {
+      name = "010-project-${terraform.workspace}"
+    }
+  }
+}
+
 data "terraform_remote_state" "bigquery" {
   backend = "remote"
   config = {
