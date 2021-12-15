@@ -17,18 +17,27 @@ module "sa_bigquery" {
   project      = var.project
 
   sa_role_binding = [
-    "roles/bigquery.dataViewer",
     "roles/bigquery.jobUser",
   ]
 }
 
-#resource "google_bigquery_table_iam_member" "this" {
-#  project = data.terraform_remote_state.project.outputs.project_id
-#  dataset_id = google_bigquery_table.test.dataset_id
-#  table_id = google_bigquery_table.test.table_id
-#  role = "roles/bigquery.dataOwner"
-#  member = "serviceAccount:module.sa.email"
-#}
+data "terraform_remote_state" "bigquery" {
+  backend = "remote"
+  config = {
+    organization = "monom-mvp-environment"
+    workspaces = {
+      name = "130-bigquery-${terraform.workspace}"
+    }
+  }
+}
+
+resource "google_bigquery_table_iam_member" "this" {
+  project    = data.terraform_remote_state.project.outputs.project_id
+  dataset_id = data.terraform_remote_state.bigquery.outputs.dataset_id
+  table_id   = var.client_project_id
+  role       = "roles/bigquery.dataOwner"
+  member     = "serviceAccount:module.sa_bigquery.email"
+}
 
 resource "grafana_data_source" "bigquery" {
 
