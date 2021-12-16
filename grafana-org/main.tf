@@ -8,11 +8,11 @@ resource "grafana_user" "this" {
 }
 
 data "external" "py_prep" {
-  program = ["${path.module}/pyPrep.sh", "${path.module}"]
+  program = ["${path.module}/pyPrep.sh", path.module]
 }
 
 data "external" "email_users" {
-  program = ["${path.module}/venv/bin/python", "${path.module}/get_mongo_email_users.py", var.mongo_connection_string, var.client_project_id]
+  program    = ["${path.module}/venv/bin/python", "${path.module}/get_mongo_email_users.py", var.mongo_connection_string, var.client_project_id]
   depends_on = [data.external.py_prep]
 }
 

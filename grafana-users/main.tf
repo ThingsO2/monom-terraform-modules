@@ -1,5 +1,5 @@
 data "external" "py_prep" {
-  program = ["${path.module}/pyPrep.sh", "${path.module}"]
+  program = ["${path.module}/pyPrep.sh", path.module]
 }
 
 data "external" "email_users" {
