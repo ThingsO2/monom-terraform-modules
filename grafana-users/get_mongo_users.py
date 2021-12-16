@@ -4,7 +4,6 @@ from bson.json_util import dumps
 from json import loads as json_load
 
 # function to get users from mongo
-#def get_users(mongo_connection_string, project, mongo_db = 'monomizer', mongo_collection = 'accounts.user'):
 def get_users(mongo_connection_string, mongo_db = 'monomizer', mongo_collection = 'accounts.user'):
     # connect to mongo
     client = MongoClient(mongo_connection_string)
