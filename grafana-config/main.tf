@@ -46,7 +46,7 @@ resource "google_bigquery_table_iam_member" "this" {
   dataset_id = data.terraform_remote_state.bigquery.outputs.dataset_id
   table_id   = var.client_project_id
   role       = "roles/bigquery.dataOwner"
-  member     = "serviceAccount:module.sa_bigquery.email"
+  member     = "serviceAccount:${module.sa_bigquery.email}"
 }
 
 resource "grafana_data_source" "bigquery" {

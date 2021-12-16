@@ -12,5 +12,5 @@ python3 -m venv $MOD_PATH/venv
 # Install dependencies
 $MOD_PATH/venv/bin/python -m pip install -q -q -q -r $MOD_PATH/requirements.txt
 
-echo '{"shiet": "yes"}'
+echo '{"done": "yes"}'
 
