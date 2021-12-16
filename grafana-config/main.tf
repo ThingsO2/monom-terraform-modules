@@ -5,7 +5,9 @@ resource "grafana_folder" "general" {
 resource "grafana_dashboard" "general" {
   for_each = zipmap(var.grafana_dashboards, var.grafana_dashboards)
 
-  config_json = file(each.value)
+  config_json = templatefile(each.value, {
+    dashboard_datasource = grafana_data_source.bigquery.name
+  })
   folder      = grafana_folder.general.id
 }
 
