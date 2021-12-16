@@ -8,8 +8,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_external"></a> [external](#provider\_external) | n/a |
-| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | n/a |
+| <a name="provider_external"></a> [external](#provider\_external) | 2.1.1 |
+| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | 1.16.0 |
 
 ## Modules
 
@@ -21,10 +21,8 @@ No modules.
 |------|------|
 | [grafana_organization.this](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/organization) | resource |
 | [grafana_user.this](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/user) | resource |
-| [grafana_user.users](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/user) | resource |
 | [external_external.email_users](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
-| [external_external.login_users](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
-| [external_external.name_users](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
+| [external_external.py_prep](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
 
 ## Inputs
 

@@ -8,7 +8,9 @@
 
 | Name | Version |
 |------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | n/a |
 | <a name="provider_grafana"></a> [grafana](#provider\_grafana) | n/a |
+| <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
 
@@ -20,9 +22,12 @@
 
 | Name | Type |
 |------|------|
+| [google_bigquery_table_iam_member.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_table_iam_member) | resource |
 | [grafana_dashboard.general](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/dashboard) | resource |
 | [grafana_data_source.bigquery](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/data_source) | resource |
 | [grafana_folder.general](https://registry.terraform.io/providers/grafana/grafana/latest/docs/resources/folder) | resource |
+| [terraform_remote_state.bigquery](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
+| [terraform_remote_state.project](https://registry.terraform.io/providers/hashicorp/terraform/latest/docs/data-sources/remote_state) | data source |
 
 ## Inputs
 
