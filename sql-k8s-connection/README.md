@@ -28,6 +28,7 @@ No modules.
 | <a name="input_database_tier"></a> [database\_tier](#input\_database\_tier) | n/a | `string` | `"db-f1-micro"` | no |
 | <a name="input_database_version"></a> [database\_version](#input\_database\_version) | n/a | `string` | n/a | yes |
 | <a name="input_disk_type"></a> [disk\_type](#input\_disk\_type) | n/a | `string` | `"PD_SSD"` | no |
+| <a name="input_enable_backup"></a> [enable\_backup](#input\_enable\_backup) | n/a | `bool` | `false` | no |
 | <a name="input_network_id"></a> [network\_id](#input\_network\_id) | n/a | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | n/a | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | n/a | `string` | n/a | yes |
