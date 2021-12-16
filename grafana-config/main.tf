@@ -12,7 +12,7 @@ resource "grafana_dashboard" "general" {
 module "sa_bigquery" {
   source = "github.com/ThingsO2/monom-terraform-modules//service-account?ref=v1.2.0"
 
-  account_id   = var.client_project_id == "" ? "bigquery-datasource" : "bq-ds-${var.client_project_id}"
+  account_id   = "bq-ds-${var.client_project_id}"
   display_name = "BigQuery DataSource SA"
   project      = var.project
 
