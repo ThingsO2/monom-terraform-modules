@@ -64,7 +64,7 @@ resource "kubernetes_manifest" "frontend_config" {
       redirectToHttps = {
         enabled = true
       }
-      sslPolicy = "${var.name}-ssl-policy"
+      sslPolicy = "${var.project}-monom-ssl-policy" // Makes use of project's default SSL policy
     }
   }
 }
@@ -73,13 +73,6 @@ resource "google_compute_global_address" "this" {
   name         = var.name
   project      = var.project
   address_type = "EXTERNAL"
-}
-
-resource "google_compute_ssl_policy" "this" {
-  name            = "${var.name}-ssl-policy"
-  project         = var.project
-  profile         = "MODERN"
-  min_tls_version = "TLS_1_2"
 }
 
 data "aws_route53_zone" "this" {

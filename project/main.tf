@@ -66,3 +66,11 @@ resource "google_project_iam_member" "conditional" {
     expression  = each.value.expression
   }
 }
+
+// Creates a default SSL policy for the project. This is going to be used by Ingress objetcts
+resource "google_compute_ssl_policy" "this" {
+  name            = "${var.project}-monom-ssl-policy"
+  project         = var.project
+  profile         = "MODERN"
+  min_tls_version = "TLS_1_2"
+}
