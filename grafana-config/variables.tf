@@ -8,8 +8,11 @@ variable "grafana_folder_name" {
 }
 
 variable "grafana_dashboards" {
-  type = list(string)
-  default = []
+  type = map(object({
+    file = string
+    config = map(string)
+  }))
+  default = {}
 }
 
 variable "client_project_id" {
