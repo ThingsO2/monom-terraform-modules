@@ -64,7 +64,7 @@ resource "kubernetes_manifest" "frontend_config" {
       redirectToHttps = {
         enabled = true
       }
-      sslPolicy = "${var.project}-monom-ssl-policy" // Makes use of project's default SSL policy
+      sslPolicy = "gke-ingress-ssl-policy"
     }
   }
 }
