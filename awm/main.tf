@@ -59,7 +59,7 @@ resource "kubernetes_secret" "sql" {
 }
 
 module "public_app" {
-  source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=v1.0.1"
+  source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=v1.3.2"
 
   name        = "awm-${var.client_id}"
   project     = var.project
