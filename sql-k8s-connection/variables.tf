@@ -14,6 +14,11 @@ variable "network_name" {
   type = string
 }
 
+variable "network_prefix_length" {
+  type    = number
+  default = 24
+}
+
 variable "database_instance_name" {
   type = string
 }

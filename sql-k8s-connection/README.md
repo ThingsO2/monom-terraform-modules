@@ -31,6 +31,7 @@ No modules.
 | <a name="input_enable_backup"></a> [enable\_backup](#input\_enable\_backup) | n/a | `bool` | `false` | no |
 | <a name="input_network_id"></a> [network\_id](#input\_network\_id) | n/a | `string` | n/a | yes |
 | <a name="input_network_name"></a> [network\_name](#input\_network\_name) | n/a | `string` | n/a | yes |
+| <a name="input_network_prefix_length"></a> [network\_prefix\_length](#input\_network\_prefix\_length) | n/a | `number` | `24` | no |
 | <a name="input_project"></a> [project](#input\_project) | n/a | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
 | <a name="input_sql_database_name"></a> [sql\_database\_name](#input\_sql\_database\_name) | n/a | `string` | n/a | yes |
