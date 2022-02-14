@@ -38,6 +38,11 @@ variable "database_password" {
 }
 
 variable "firebase_service_account_key" {
-  type = string
+  type      = string
   sensitive = true
+}
+
+variable "has_public_endpoint" {
+  type    = bool
+  default = true
 }

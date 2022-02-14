@@ -36,6 +36,7 @@
 | <a name="input_database_instance_name"></a> [database\_instance\_name](#input\_database\_instance\_name) | n/a | `string` | n/a | yes |
 | <a name="input_database_password"></a> [database\_password](#input\_database\_password) | n/a | `string` | n/a | yes |
 | <a name="input_firebase_service_account_key"></a> [firebase\_service\_account\_key](#input\_firebase\_service\_account\_key) | n/a | `string` | n/a | yes |
+| <a name="input_has_public_endpoint"></a> [has\_public\_endpoint](#input\_has\_public\_endpoint) | n/a | `bool` | `true` | no |
 | <a name="input_node_pool_cluster_id"></a> [node\_pool\_cluster\_id](#input\_node\_pool\_cluster\_id) | n/a | `string` | n/a | yes |
 | <a name="input_node_pool_machine_type"></a> [node\_pool\_machine\_type](#input\_node\_pool\_machine\_type) | n/a | `string` | `"e2-standard-4"` | no |
 | <a name="input_node_pool_node_location"></a> [node\_pool\_node\_location](#input\_node\_pool\_node\_location) | n/a | `string` | n/a | yes |
