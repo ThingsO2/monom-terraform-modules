@@ -3,17 +3,23 @@ variable "region" {
 }
 
 variable "billing_account_name" {
-  type = string
+  type    = string
+  default = null
 }
 
 variable "org_id" {
-  type = number
+  type    = number
+  default = null
 }
 
 variable "project" {
   type = string
 }
 
+variable "create_project" {
+  type    = bool
+  default = true
+}
 variable "project_services" {
   type    = list(string)
   default = []

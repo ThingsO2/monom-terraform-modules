@@ -45,3 +45,8 @@ variable "enable_backup" {
   type    = bool
   default = false
 }
+
+variable "deletion_protection" {
+  type    = bool
+  default = true
+}

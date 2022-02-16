@@ -28,9 +28,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_billing_account_name"></a> [billing\_account\_name](#input\_billing\_account\_name) | n/a | `string` | n/a | yes |
+| <a name="input_billing_account_name"></a> [billing\_account\_name](#input\_billing\_account\_name) | n/a | `string` | `null` | no |
+| <a name="input_create_project"></a> [create\_project](#input\_create\_project) | n/a | `bool` | `true` | no |
 | <a name="input_members"></a> [members](#input\_members) | n/a | <pre>map(object({<br>    member = string<br>    roles  = list(string)<br>    roles_condition = optional(list(object({<br>      role        = string<br>      title       = string<br>      description = string<br>      expression  = string<br>    })))<br>  }))</pre> | `{}` | no |
-| <a name="input_org_id"></a> [org\_id](#input\_org\_id) | n/a | `number` | n/a | yes |
+| <a name="input_org_id"></a> [org\_id](#input\_org\_id) | n/a | `number` | `null` | no |
 | <a name="input_project"></a> [project](#input\_project) | n/a | `string` | n/a | yes |
 | <a name="input_project_services"></a> [project\_services](#input\_project\_services) | n/a | `list(string)` | `[]` | no |
 | <a name="input_region"></a> [region](#input\_region) | n/a | `string` | n/a | yes |
