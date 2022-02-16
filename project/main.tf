@@ -1,20 +1,26 @@
 data "google_billing_account" "this" {
+  count        = var.create_project == true ? 1 : 0
   display_name = var.billing_account_name
   open         = true
 }
 
 resource "google_project" "this" {
+  count      = var.create_project == true ? 1 : 0
   name       = var.project
   project_id = var.project
   org_id     = var.org_id
 
-  billing_account = data.google_billing_account.this.id
+  billing_account = data.google_billing_account.this[0].id
+}
+
+locals {
+  project = var.create_project == true ? google_project.this[0].project_id : var.project
 }
 
 resource "google_project_service" "this" {
   for_each = zipmap(var.project_services, var.project_services)
 
-  project                    = google_project.this.id
+  project                    = local.project
   service                    = each.value
   disable_dependent_services = true
 }
@@ -49,14 +55,14 @@ locals {
 resource "google_project_iam_member" "this" {
   for_each = local.project_iam_member
 
-  project = google_project.this.project_id
+  project = local.project
   role    = each.value.role
   member  = each.value.member
 }
 resource "google_project_iam_member" "conditional" {
   for_each = local.conditional_project_iam_member
 
-  project = google_project.this.project_id
+  project = local.project
   role    = each.value.role
   member  = each.value.member
 
