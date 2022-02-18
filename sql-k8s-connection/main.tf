@@ -41,3 +41,41 @@ resource "google_sql_database" "this" {
   project  = var.project
   instance = google_sql_database_instance.this.name
 }
+
+data "google_monitoring_notification_channel" "this" {
+  count        = var.alert_policies == null ? 0 : 1
+  display_name = var.project
+  project      = var.project
+}
+
+resource "google_monitoring_alert_policy" "this" {
+  for_each = {
+    for _policies in var.alert_policies : _policies.display_name => _policies
+  }
+
+  display_name          = "${var.database_instance_name} - ${each.value.display_name}"
+  project               = var.project
+  notification_channels = [data.google_monitoring_notification_channel.this[0].name]
+  combiner              = "OR"
+
+  dynamic "conditions" {
+    for_each = each.value.conditions
+    content {
+      display_name = conditions.value.display_name
+      condition_threshold {
+        filter          = "metric.type=\"${conditions.value.metric_type}\" resource.type=\"cloudsql_database\" resource.label.\"project_id\"=\"${var.project}\" resource.label.\"database_id\"=\"${var.project}:${var.database_instance_name}\""
+        duration        = conditions.value.duration
+        threshold_value = conditions.value.threshold_value
+        comparison      = "COMPARISON_GT"
+        aggregations {
+          alignment_period   = conditions.value.alignment_period
+          per_series_aligner = "ALIGN_MEAN"
+        }
+        trigger {
+          count   = 1
+          percent = 0
+        }
+      }
+    }
+  }
+}
