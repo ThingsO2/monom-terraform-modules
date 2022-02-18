@@ -50,3 +50,17 @@ variable "deletion_protection" {
   type    = bool
   default = true
 }
+
+variable "alert_policies" {
+  type = list(object({
+    display_name = string
+    conditions = list(object({
+      display_name     = string
+      metric_type      = string # https://cloud.google.com/sql/docs/mysql/admin-api/metrics
+      duration         = string
+      threshold_value  = string
+      alignment_period = string
+    }))
+  }))
+  default = null
+}
