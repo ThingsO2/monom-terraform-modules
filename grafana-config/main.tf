@@ -8,7 +8,7 @@ resource "grafana_dashboard" "general" {
   config_json = templatefile(each.value, {
     dashboard_datasource = grafana_data_source.bigquery.name
   })
-  folder      = grafana_folder.general.id
+  folder = grafana_folder.general.id
 }
 
 module "sa_bigquery" {
@@ -68,4 +68,3 @@ resource "grafana_data_source" "bigquery" {
     private_key = jsondecode(module.sa_bigquery.key_decode)["private_key"]
   }
 }
-

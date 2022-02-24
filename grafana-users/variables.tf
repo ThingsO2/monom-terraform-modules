@@ -1,5 +1,5 @@
 variable "grafana_user_email" {
-    type = string
+  type = string
 }
 
 variable "grafana_user_name" {
@@ -11,12 +11,12 @@ variable "grafana_user_login" {
 }
 
 variable "grafana_user_password" {
-  type = string
+  type      = string
   sensitive = true
 }
 
 variable "grafana_user_is_admin" {
-  type = bool
+  type    = bool
   default = false
 }
 

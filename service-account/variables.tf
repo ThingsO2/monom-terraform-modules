@@ -11,6 +11,6 @@ variable "display_name" {
 }
 
 variable "sa_role_binding" {
-  type = list(string)
+  type    = list(string)
   default = []
 }

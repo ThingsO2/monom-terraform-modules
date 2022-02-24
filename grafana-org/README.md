@@ -29,7 +29,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_client_project_id"></a> [client\_project\_id](#input\_client\_project\_id) | n/a | `string` | n/a | yes |
-| <a name="input_grafana_additional_admin_users"></a> [grafana\_additional\_admin\_users](#input\_grafana\_additional\_admin\_users) | n/a | `list` | `[]` | no |
+| <a name="input_grafana_additional_admin_users"></a> [grafana\_additional\_admin\_users](#input\_grafana\_additional\_admin\_users) | n/a | `list(any)` | `[]` | no |
 | <a name="input_grafana_organization_name"></a> [grafana\_organization\_name](#input\_grafana\_organization\_name) | n/a | `string` | n/a | yes |
 | <a name="input_grafana_user_email"></a> [grafana\_user\_email](#input\_grafana\_user\_email) | n/a | `string` | n/a | yes |
 | <a name="input_grafana_user_is_admin"></a> [grafana\_user\_is\_admin](#input\_grafana\_user\_is\_admin) | n/a | `bool` | `false` | no |

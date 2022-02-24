@@ -8,11 +8,11 @@ variable "grafana_folder_name" {
 }
 
 variable "grafana_dashboards" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
 variable "client_project_id" {
-  type = string
+  type    = string
   default = ""
 }
