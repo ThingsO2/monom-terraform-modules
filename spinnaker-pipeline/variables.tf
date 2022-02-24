@@ -8,17 +8,17 @@ variable "name" {
 }
 
 variable "create_app" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "app_owner_email" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "pipeline_name" {
-  type = string
+  type    = string
   default = "Pipeline"
 }
 

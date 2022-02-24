@@ -4,5 +4,6 @@ set -euo pipefail
 for i in $(ls -d */ | grep -v init-utils)
 do
     echo $i
+    terraform fmt $i
     terraform-docs markdown $i > $i/README.md
 done
