@@ -25,7 +25,7 @@ terraform {
   backend "remote" {
     organization = "$TF_ORG"
     workspaces {
-      name = "  $WORKSPACE_PREFIX"
+      name = "$WORKSPACE_PREFIX"
     }
   }
 }
