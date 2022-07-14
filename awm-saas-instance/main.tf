@@ -31,7 +31,7 @@ resource "google_compute_instance" "this" {
   machine_type = var.machine_type
   zone         = data.google_compute_zones.available.names[0]
 
-  deletion_protection       = true
+  deletion_protection       = var.deletion_protection
   allow_stopping_for_update = true
 
   tags = ["awm-instance"]

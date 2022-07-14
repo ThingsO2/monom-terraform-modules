@@ -60,3 +60,9 @@ variable "sql_instance" {
   type        = string
   description = "Cloud SQL instance name"
 }
+
+variable "deletion_protection" {
+  type        = bool
+  description = "Protect the instance against deletion"
+  default     = true
+}

@@ -7,8 +7,6 @@ No requirements.
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
-| <a name="provider_local"></a> [local](#provider\_local) | n/a |
-| <a name="provider_null"></a> [null](#provider\_null) | n/a |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
 
 ## Modules
@@ -23,9 +21,6 @@ No modules.
 | [google_compute_instance.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance) | resource |
 | [google_sql_database.awm_database](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_database) | resource |
 | [google_sql_user.database_user](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/sql_user) | resource |
-| [local_file.ansible_vars](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [local_file.inventory](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
-| [null_resource.dependencies](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [random_password.db_password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
 | [google_compute_network.vpc](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_network) | data source |
 | [google_compute_subnetwork.subnet](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/compute_subnetwork) | data source |
@@ -36,6 +31,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_base_image"></a> [base\_image](#input\_base\_image) | GCE instance base image | `string` | `"ubuntu-os-cloud/ubuntu-2204-jammy-v20220506"` | no |
+| <a name="input_deletion_protection"></a> [deletion\_protection](#input\_deletion\_protection) | Protect the instance against deletion | `bool` | `true` | no |
 | <a name="input_disk_size"></a> [disk\_size](#input\_disk\_size) | Size of the boot disk in GB. | `number` | `40` | no |
 | <a name="input_instance_name"></a> [instance\_name](#input\_instance\_name) | Name for the new AWM instance | `string` | n/a | yes |
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | GCE machine type | `string` | `"n1-standard-2"` | no |
@@ -51,8 +47,8 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_database_name"></a> [database\_name](#output\_database\_name) | n/a |
-| <a name="output_database_password"></a> [database\_password](#output\_database\_password) | n/a |
-| <a name="output_database_user"></a> [database\_user](#output\_database\_user) | n/a |
-| <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | n/a |
-| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | n/a |
+| <a name="output_database_name"></a> [database\_name](#output\_database\_name) | Name of the newly-created database |
+| <a name="output_database_password"></a> [database\_password](#output\_database\_password) | Password to access the database |
+| <a name="output_database_user"></a> [database\_user](#output\_database\_user) | Database username |
+| <a name="output_private_ip"></a> [private\_ip](#output\_private\_ip) | Instance's Private IP |
+| <a name="output_public_ip"></a> [public\_ip](#output\_public\_ip) | Instance's Public IP |
