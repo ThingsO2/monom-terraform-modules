@@ -7,5 +7,4 @@
 * [project](./project/README.md)
 * [redis-k8s-connection](./redis-k8s-connection/README.md)
 * [service-account](./service-account/README.md)
-* [spinnaker-pipeline](./spinnaker-pipeline/README.md)
 * [sql-k8s-connection](./sql-k8s-connection/README.md)

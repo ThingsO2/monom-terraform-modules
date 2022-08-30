@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    spinnaker = {
-      source  = "mercari/spinnaker"
-      version = "0.3.0"
-    }
-  }
-}
-
 resource "google_container_node_pool" "this" {
   name           = "awm-${var.client_id}"
   cluster        = var.node_pool_cluster_id

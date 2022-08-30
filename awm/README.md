@@ -1,8 +1,6 @@
 ## Requirements
 
-| Name | Version |
-|------|---------|
-| <a name="requirement_spinnaker"></a> [spinnaker](#requirement\_spinnaker) | 0.3.0 |
+No requirements.
 
 ## Providers
 
