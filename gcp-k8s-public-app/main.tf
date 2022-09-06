@@ -86,3 +86,14 @@ resource "aws_route53_record" "this" {
   ttl     = "300"
   records = [google_compute_global_address.this.address]
 }
+
+data "cloudflare_zone" "this" {
+  name = "monom.ai"
+}
+resource "cloudflare_record" "this" {
+  zone_id = data.cloudflare_zone.this.id
+  name    = "${local.domain}.${var.root_domain}."
+  type    = "A"
+  ttl     = "300"
+  value   = google_compute_global_address.this.address
+}
