@@ -50,7 +50,7 @@ resource "kubernetes_secret" "sql" {
 }
 
 module "public_app" {
-  source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=v1.3.2"
+  source = "github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app?ref=BET-3830-migrate-monom-ai"
   count  = var.has_public_endpoint == true ? 1 : 0
 
   name        = "awm-${var.client_id}"
