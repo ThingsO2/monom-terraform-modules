@@ -2,7 +2,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.52.0 |
+| <a name="requirement_cloudflare"></a> [cloudflare](#requirement\_cloudflare) | 3.22.0 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 3.78.0 |
 | <a name="requirement_kubernetes-alpha"></a> [kubernetes-alpha](#requirement\_kubernetes-alpha) | ~> 0.5.0 |
 
@@ -10,7 +10,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 3.52.0 |
+| <a name="provider_cloudflare"></a> [cloudflare](#provider\_cloudflare) | 3.22.0 |
 | <a name="provider_google"></a> [google](#provider\_google) | ~> 3.78.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
 | <a name="provider_kubernetes-alpha"></a> [kubernetes-alpha](#provider\_kubernetes-alpha) | ~> 0.5.0 |
@@ -23,12 +23,12 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_route53_record.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [cloudflare_record.this](https://registry.terraform.io/providers/cloudflare/cloudflare/3.22.0/docs/resources/record) | resource |
 | [google_compute_global_address.this](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_global_address) | resource |
 | [kubernetes-alpha_kubernetes_manifest.frontend_config](https://registry.terraform.io/providers/hashicorp/kubernetes-alpha/latest/docs/resources/kubernetes_manifest) | resource |
 | [kubernetes-alpha_kubernetes_manifest.managed_certificate](https://registry.terraform.io/providers/hashicorp/kubernetes-alpha/latest/docs/resources/kubernetes_manifest) | resource |
 | [kubernetes_ingress.this](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/ingress) | resource |
-| [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
+| [cloudflare_zone.this](https://registry.terraform.io/providers/cloudflare/cloudflare/3.22.0/docs/data-sources/zone) | data source |
 
 ## Inputs
 

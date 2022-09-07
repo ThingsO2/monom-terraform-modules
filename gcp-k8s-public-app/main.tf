@@ -75,18 +75,6 @@ resource "google_compute_global_address" "this" {
   address_type = "EXTERNAL"
 }
 
-data "aws_route53_zone" "this" {
-  name = "${var.root_domain}."
-}
-
-resource "aws_route53_record" "this" {
-  zone_id = data.aws_route53_zone.this.zone_id
-  name    = "${local.domain}.${var.root_domain}."
-  type    = "A"
-  ttl     = "300"
-  records = [google_compute_global_address.this.address]
-}
-
 data "cloudflare_zone" "this" {
   name = "monom.ai"
 }
