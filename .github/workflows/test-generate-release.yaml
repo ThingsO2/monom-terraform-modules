@@ -1,0 +1,62 @@
+name: Test generate release
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test generate release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Analyze commits
+        id: next_release_version
+        run: |
+          mkdir semantic-release
+          cd semantic-release
+          cat > package.json << EOF
+          {
+            "name": "next-release",
+            "version": "1.0.0",
+            "description": "",
+            "main": "index.js",
+            "scripts": {
+              "test": "echo \"Error: no test specified\" && exit 1"
+            },
+            "author": "",
+            "license": "ISC"
+          }
+          EOF
+          npm install --save-dev semantic-release > /dev/null
+          sed -i "s#const {isCi, branch, prBranch, isPr} = context.envCi;#const {isCi, branch, prBranch, isPr} = {isCi: false, branch: '${{ github.event.pull_request.head.ref }}', prBranch: undefined, isPr: undefined};#" node_modules/semantic-release/index.js
+          echo ::set-output name=TAG::$(npx semantic-release -b ${{ github.event.pull_request.head.ref }}  -p '@semantic-release/commit-analyzer' --dry-run --no-ci | grep -oiP 'the next release version is *\K.*')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo next_release_version
+        run: echo ${{ steps.next_release_version.outputs.TAG }}
+
+      - name: Create comment if analyze commits fails
+        uses: peter-evans/create-or-update-comment@v1
+        if: steps.next_release_version.outputs.TAG == ''
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Commits message format don't use Angular Commit Message Conventions and it's necessary to generate the next tag
+
+            https://semantic-release.gitbook.io/semantic-release/#commit-message-format
+
+      - name: Cancel if analyze commits fails
+        if: steps.next_release_version.outputs.TAG == ''
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed("Commits message format don't use Angular Commit Message Conventions and it's necessary to generate the next tag")

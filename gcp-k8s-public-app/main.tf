@@ -75,14 +75,13 @@ resource "google_compute_global_address" "this" {
   address_type = "EXTERNAL"
 }
 
-data "aws_route53_zone" "this" {
-  name = "${var.root_domain}."
+data "cloudflare_zone" "this" {
+  name = "monom.ai"
 }
-
-resource "aws_route53_record" "this" {
-  zone_id = data.aws_route53_zone.this.zone_id
+resource "cloudflare_record" "this" {
+  zone_id = data.cloudflare_zone.this.id
   name    = "${local.domain}.${var.root_domain}."
   type    = "A"
   ttl     = "300"
-  records = [google_compute_global_address.this.address]
+  value   = google_compute_global_address.this.address
 }

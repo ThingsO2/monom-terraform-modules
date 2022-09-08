@@ -13,7 +13,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_public_app"></a> [public\_app](#module\_public\_app) | github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app | v1.3.2 |
+| <a name="module_public_app"></a> [public\_app](#module\_public\_app) | github.com/ThingsO2/monom-terraform-modules//gcp-k8s-public-app | v2.0.0 |
 
 ## Resources
 
