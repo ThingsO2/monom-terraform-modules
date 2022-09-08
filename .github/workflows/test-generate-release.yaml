@@ -41,6 +41,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Echo next_release_version
+        run: ${{ steps.next_release_version.outputs.TAG }}
+
       - name: Create comment if analyze commits fails
         uses: peter-evans/create-or-update-comment@v1
         if: steps.next_release_version.outputs.TAG == ''
