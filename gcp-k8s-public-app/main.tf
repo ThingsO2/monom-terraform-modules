@@ -1,7 +1,5 @@
 
 resource "kubernetes_manifest" "managed_certificate" {
-  provider = kubernetes-alpha
-
   manifest = {
     apiVersion = "networking.gke.io/v1"
     kind       = "ManagedCertificate"
@@ -17,9 +15,8 @@ resource "kubernetes_manifest" "managed_certificate" {
   }
 }
 
-resource "kubernetes_ingress" "this" {
-  provider = kubernetes
-  count    = var.ingress == true ? 1 : 0
+resource "kubernetes_ingress_v1" "this" {
+  count = var.ingress == true ? 1 : 0
 
   metadata {
     name      = var.name
@@ -41,8 +38,12 @@ resource "kubernetes_ingress" "this" {
       http {
         path {
           backend {
-            service_name = var.service_name
-            service_port = var.service_port
+            service {
+              name = var.service_name
+              port {
+                number = var.service_port
+              }
+            }
           }
         }
       }
@@ -51,8 +52,6 @@ resource "kubernetes_ingress" "this" {
 }
 
 resource "kubernetes_manifest" "frontend_config" {
-  provider = kubernetes-alpha
-
   manifest = {
     apiVersion = "networking.gke.io/v1beta1"
     kind       = "FrontendConfig"

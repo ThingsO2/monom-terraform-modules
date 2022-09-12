@@ -10,7 +10,7 @@ locals {
 
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster-update-variant"
-  version = "~> 16.0.1"
+  version = "~> 23.0.0"
 
   project_id = var.project
   name       = var.gke_name
@@ -41,6 +41,7 @@ module "gke" {
     {
       name              = "pool-01"
       machine_type      = var.node_pool_machine_type
+      image_type        = "COS_CONTAINERD"
       disk_size_gb      = 50
       node_count        = var.node_autoscaling == false ? var.node_count : null
       min_count         = var.node_autoscaling == true ? var.node_pool_min_count : null
