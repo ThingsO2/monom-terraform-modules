@@ -5,3 +5,7 @@ output "gke_service_account" {
 output "cluster_id" {
   value = module.gke.cluster_id
 }
+
+output "zones" {
+  value = module.gke.zones
+}
