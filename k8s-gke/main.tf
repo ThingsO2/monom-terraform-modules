@@ -10,7 +10,7 @@ locals {
 
 module "gke" {
   source  = "terraform-google-modules/kubernetes-engine/google//modules/beta-public-cluster-update-variant"
-  version = "~> 23.0.0"
+  version = "~> 23.1.0"
 
   project_id = var.project
   name       = var.gke_name
