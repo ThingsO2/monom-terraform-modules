@@ -15,7 +15,7 @@ resource "kubernetes_manifest" "managed_certificate" {
   }
 }
 
-resource "kubernetes_ingress" "this" {
+resource "kubernetes_ingress_v1" "this" {
   count = var.ingress == true ? 1 : 0
 
   metadata {
@@ -37,16 +37,18 @@ resource "kubernetes_ingress" "this" {
       host = "${local.domain}.${var.root_domain}"
       http {
         path {
-          path = "/*"
           backend {
-            service_name = var.service_name
-            service_port = var.service_port
+            service {
+              name = var.service_name
+              port {
+                number = var.service_port
+              }
+            }
           }
         }
       }
     }
   }
-
 }
 
 resource "kubernetes_manifest" "frontend_config" {
