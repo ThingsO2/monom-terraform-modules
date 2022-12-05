@@ -21,6 +21,11 @@ variable "instance_name" {
   description = "Name for the new AWM instance"
 }
 
+variable "has_instance_group" {
+  type    = bool
+  default = false
+}
+
 variable "network_name" {
   type        = string
   description = "Name of the VPC"
@@ -31,6 +36,11 @@ variable "subnetwork_name" {
   type        = string
   description = "Name of the VPC subnet"
   default     = "default"
+}
+
+variable "has_fixed_public_ip" {
+  type    = bool
+  default = true
 }
 
 variable "machine_type" {
@@ -59,6 +69,19 @@ variable "service_account_email" {
 variable "sql_instance" {
   type        = string
   description = "Cloud SQL instance name"
+}
+
+variable "database_name" {
+  type        = string
+  description = "Cloud SQL database name"
+  default     = null
+}
+
+variable "database_password" {
+  type        = string
+  description = "Cloud SQL database password"
+  sensitive   = true
+  default     = null
 }
 
 variable "deletion_protection" {
