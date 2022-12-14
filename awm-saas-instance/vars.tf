@@ -21,6 +21,23 @@ variable "instance_name" {
   description = "Name for the new AWM instance"
 }
 
+variable "instance_tags" {
+  type       = list(string)
+  default    = ["awm-instance"]
+  description = "Tags for the new AWM instance"
+}
+
+variable "instance_ssh_public_key" {
+  type        = string
+  description = "SSH public key for the new AWM instance"
+  default     = null
+}
+
+variable "has_instance_group" {
+  type    = bool
+  default = false
+}
+
 variable "network_name" {
   type        = string
   description = "Name of the VPC"
@@ -33,10 +50,15 @@ variable "subnetwork_name" {
   default     = "default"
 }
 
+variable "has_fixed_public_ip" {
+  type    = bool
+  default = true
+}
+
 variable "machine_type" {
   type        = string
   description = "GCE machine type"
-  default     = "n1-standard-2"
+  default     = "e2-standard-2"
 }
 
 variable "base_image" {
@@ -59,6 +81,19 @@ variable "service_account_email" {
 variable "sql_instance" {
   type        = string
   description = "Cloud SQL instance name"
+}
+
+variable "database_name" {
+  type        = string
+  description = "Cloud SQL database name"
+  default     = null
+}
+
+variable "database_password" {
+  type        = string
+  description = "Cloud SQL database password"
+  sensitive   = true
+  default     = null
 }
 
 variable "deletion_protection" {

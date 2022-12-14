@@ -43,7 +43,7 @@ resource "google_sql_database" "this" {
 }
 
 data "google_monitoring_notification_channel" "this" {
-  count        = var.alert_policies == null ? 0 : 1
+  count        = length(var.alert_policies) == 0 ? 0 : 1
   display_name = var.project
   project      = var.project
 }

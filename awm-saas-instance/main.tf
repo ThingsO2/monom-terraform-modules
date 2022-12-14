@@ -19,12 +19,6 @@ data "google_compute_subnetwork" "subnet" {
 
 // -------------------------------------------------------------------------------------
 
-resource "google_compute_address" "this" {
-  project = var.project
-  region  = var.region
-  name    = "${var.instance_name}-address"
-}
-
 resource "google_compute_instance" "this" {
   project      = var.project
   name         = "awm-${var.instance_name}"
@@ -34,7 +28,11 @@ resource "google_compute_instance" "this" {
   deletion_protection       = var.deletion_protection
   allow_stopping_for_update = true
 
-  tags = ["awm-instance"]
+  tags = var.instance_tags
+
+  metadata = var.instance_ssh_public_key == null ? {} : {
+    ssh-keys = "awm:${var.instance_ssh_public_key}"
+  }
 
   boot_disk {
     initialize_params {
@@ -47,30 +45,49 @@ resource "google_compute_instance" "this" {
     network            = data.google_compute_network.vpc.id
     subnetwork         = data.google_compute_subnetwork.subnet.id
     subnetwork_project = var.project
-    access_config {
-      nat_ip = google_compute_address.this.address
+
+    dynamic "access_config" {
+      for_each = var.has_fixed_public_ip ? { 1 : 1 } : {}
+      content {
+        nat_ip = google_compute_address.this[0].address
+      }
+    }
+    dynamic "access_config" {
+      for_each = var.has_fixed_public_ip ? {} : { 1 : 1 }
+      content {
+      }
     }
   }
   service_account {
     email  = var.service_account_email
     scopes = ["logging-write", "monitoring-write", "trace", "storage-ro"]
   }
+
+  labels = {
+    "awm-instance" = var.instance_name
+    "type" = "awm-instance"
+  }
 }
 
-resource "google_sql_database" "awm_database" {
-  project  = var.project
-  name     = "awm_${var.instance_name}"
-  instance = var.sql_instance
+resource "google_compute_address" "this" {
+  count   = var.has_fixed_public_ip ? 1 : 0
+  project = var.project
+  region  = var.region
+  name    = "awm-${var.instance_name}-address"
 }
 
-resource "random_password" "db_password" {
-  length  = 16
-  special = true
-}
+resource "google_compute_instance_group" "this" {
+  count       = var.has_instance_group ? 1 : 0
+  name        = "awm-${var.instance_name}"
+  description = "AWM ${var.instance_name} instance group"
 
-resource "google_sql_user" "database_user" {
-  project  = var.project
-  name     = var.instance_name
-  instance = var.sql_instance
-  password = random_password.db_password.result
+  project   = var.project
+  instances = [google_compute_instance.this.id]
+
+  named_port {
+    name = "https"
+    port = "443"
+  }
+
+  zone = data.google_compute_zones.available.names[0]
 }
