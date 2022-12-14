@@ -22,3 +22,7 @@ output "database_password" {
   value       = var.database_password == null ? random_password.db_password[0].result : var.database_password
   description = "Password to access the database"
 }
+
+output "instance_group" {
+  value = var.has_instance_group ? google_compute_instance_group.this[0].id : null
+}

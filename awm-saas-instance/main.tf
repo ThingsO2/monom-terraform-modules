@@ -28,7 +28,11 @@ resource "google_compute_instance" "this" {
   deletion_protection       = var.deletion_protection
   allow_stopping_for_update = true
 
-  tags = ["awm-instance"]
+  tags = var.instance_tags
+
+  metadata = var.instance_ssh_public_key == null ? {} : {
+    ssh-keys = "awm:${var.instance_ssh_public_key}"
+  }
 
   boot_disk {
     initialize_params {
@@ -57,6 +61,11 @@ resource "google_compute_instance" "this" {
   service_account {
     email  = var.service_account_email
     scopes = ["logging-write", "monitoring-write", "trace", "storage-ro"]
+  }
+
+  labels = {
+    "awm-instance" = var.instance_name
+    "type" = "awm-instance"
   }
 }
 
