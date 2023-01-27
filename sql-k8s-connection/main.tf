@@ -18,7 +18,7 @@ resource "google_sql_database_instance" "this" {
   settings {
     tier = var.database_tier
     ip_configuration {
-      ipv4_enabled    = false
+      ipv4_enabled    = true
       private_network = var.network_id
     }
     disk_type = var.disk_type

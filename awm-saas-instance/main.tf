@@ -59,13 +59,16 @@ resource "google_compute_instance" "this" {
     }
   }
   service_account {
-    email  = var.service_account_email
-    scopes = ["logging-write", "monitoring-write", "trace", "storage-ro"]
+    email = var.service_account_email
+    scopes = ["logging-write", "monitoring-write", "trace", "storage-ro",
+      "https://www.googleapis.com/auth/sqlservice.admin",
+      "https://www.googleapis.com/auth/cloud-platform",
+    ]
   }
 
   labels = {
     "awm-instance" = var.instance_name
-    "type" = "awm-instance"
+    "type"         = "awm-instance"
   }
 }
 
@@ -87,6 +90,11 @@ resource "google_compute_instance_group" "this" {
   named_port {
     name = "https"
     port = "443"
+  }
+
+  named_port {
+    name = "http"
+    port = "8080"
   }
 
   zone = data.google_compute_zones.available.names[0]
