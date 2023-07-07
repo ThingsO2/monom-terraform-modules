@@ -26,6 +26,11 @@ variable "project_services" {
   default = []
 }
 
+variable "labels" {
+  type = map
+  default = {}
+}
+
 variable "members" {
   type = map(object({
     member = string
