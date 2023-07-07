@@ -5,6 +5,8 @@ resource "google_project" "this" {
   org_id     = var.org_id
 
   billing_account = var.billing_account
+
+  labels = var.labels
 }
 
 locals {
