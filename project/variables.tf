@@ -2,9 +2,10 @@ variable "region" {
   type = string
 }
 
-variable "billing_account_name" {
+variable "billing_account" {
   type    = string
   default = null
+  description = "The ID of the Google Billing Account"
 }
 
 variable "org_id" {

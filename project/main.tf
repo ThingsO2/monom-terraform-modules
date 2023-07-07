@@ -1,16 +1,10 @@
-data "google_billing_account" "this" {
-  count        = var.create_project == true ? 1 : 0
-  display_name = var.billing_account_name
-  open         = true
-}
-
 resource "google_project" "this" {
   count      = var.create_project == true ? 1 : 0
   name       = var.project
   project_id = var.project
   org_id     = var.org_id
 
-  billing_account = data.google_billing_account.this[0].id
+  billing_account = var.billing_account
 }
 
 locals {
