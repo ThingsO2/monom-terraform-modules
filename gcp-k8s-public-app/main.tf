@@ -82,5 +82,6 @@ resource "cloudflare_record" "this" {
   name    = "${local.domain}.${var.root_domain}."
   type    = "A"
   ttl     = "300"
+  proxied = var.proxied
   value   = google_compute_global_address.this.address
 }
