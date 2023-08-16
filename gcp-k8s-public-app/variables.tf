@@ -36,6 +36,11 @@ variable "root_domain" {
   default = "monom.ai"
 }
 
+variable "proxied" {
+  type = bool
+  default = false
+}
+
 locals {
   namespace = var.namespace != null ? var.namespace : var.name
   domain    = var.domain != null ? var.domain : var.name
