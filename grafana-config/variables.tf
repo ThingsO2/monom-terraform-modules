@@ -1,18 +1,26 @@
 variable "project" {
   type        = string
-  description = "Project name"
+  description = "GCP project name."
 }
 
 variable "grafana_folder_name" {
-  type = string
+  type        = string
+  description = "Name for the folder which stores the Dashboards in Grafana."
+}
+
+variable "grafana_org_id" {
+  type        = string
+  description = "The ID of the Grafana Organization where we want to operate."
 }
 
 variable "grafana_dashboards" {
-  type    = list(string)
-  default = []
+  type        = list(string)
+  default     = []
+  description = "List of Grafana dashboards to add to the project."
 }
 
 variable "client_project_id" {
-  type    = string
-  default = ""
+  type        = string
+  default     = ""
+  description = "ID of the client's project in MonoM's platform."
 }
