@@ -8,10 +8,12 @@
  */
 
 resource "grafana_folder" "general" {
-  title = var.grafana_folder_name
+  title  = var.grafana_folder_name
+  org_id = var.grafana_org_id
 }
 
 resource "grafana_dashboard" "general" {
+  org_id   = var.grafana_org_id
   for_each = zipmap(var.grafana_dashboards, var.grafana_dashboards)
 
   config_json = templatefile(each.value, {
@@ -88,8 +90,9 @@ resource "google_bigquery_table_iam_member" "writer" {
 
 resource "grafana_data_source" "bigquery" {
 
-  name = "BigQuery${var.client_project_id}"
-  type = "doitintl-bigquery-datasource"
+  name   = "BigQuery${var.client_project_id}"
+  type   = "doitintl-bigquery-datasource"
+  org_id = var.grafana_org_id
 
   json_data_encoded = jsonencode({
     "token_uri"           = "https://oauth2.googleapis.com/token"

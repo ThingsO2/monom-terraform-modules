@@ -8,6 +8,11 @@ variable "grafana_folder_name" {
   description = "Name for the folder which stores the Dashboards in Grafana."
 }
 
+variable "grafana_org_id" {
+  type        = string
+  description = "The ID of the Grafana Organization where we want to operate."
+}
+
 variable "grafana_dashboards" {
   type        = list(string)
   default     = []
