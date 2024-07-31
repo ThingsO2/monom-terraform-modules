@@ -11,14 +11,14 @@ suit for your particular use case.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_grafana"></a> [grafana](#requirement\_grafana) | >= 3.4.0 |
+| <a name="requirement_grafana"></a> [grafana](#requirement\_grafana) | >= 3.6.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | n/a |
-| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | >= 3.4.0 |
+| <a name="provider_grafana"></a> [grafana](#provider\_grafana) | >= 3.6.0 |
 | <a name="provider_terraform"></a> [terraform](#provider\_terraform) | n/a |
 
 ## Modules
@@ -47,6 +47,7 @@ suit for your particular use case.
 | <a name="input_client_project_id"></a> [client\_project\_id](#input\_client\_project\_id) | ID of the client's project in MonoM's platform. | `string` | `""` | no |
 | <a name="input_grafana_dashboards"></a> [grafana\_dashboards](#input\_grafana\_dashboards) | List of Grafana dashboards to add to the project. | `list(string)` | `[]` | no |
 | <a name="input_grafana_folder_name"></a> [grafana\_folder\_name](#input\_grafana\_folder\_name) | Name for the folder which stores the Dashboards in Grafana. | `string` | n/a | yes |
+| <a name="input_grafana_org_id"></a> [grafana\_org\_id](#input\_grafana\_org\_id) | The ID of the Grafana Organization where we want to operate. | `string` | n/a | yes |
 | <a name="input_project"></a> [project](#input\_project) | GCP project name. | `string` | n/a | yes |
 
 ## Outputs
