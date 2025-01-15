@@ -20,6 +20,16 @@ resource "google_sql_database_instance" "this" {
     ip_configuration {
       ipv4_enabled    = true
       private_network = var.network_id
+      
+      dynamic "authorized_networks" {
+        for_each = var.authorized_networks
+        iterator = authorized_networks
+
+        content {
+          name  = authorized_networks.value.net_name
+          value = authorized_networks.value.ip
+        }
+      }
     }
     disk_type = var.disk_type
 

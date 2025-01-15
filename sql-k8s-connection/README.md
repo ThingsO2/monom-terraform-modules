@@ -27,6 +27,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_alert_policies"></a> [alert\_policies](#input\_alert\_policies) | n/a | <pre>list(object({<br>    display_name = string<br>    conditions = list(object({<br>      display_name     = string<br>      metric_type      = string # https://cloud.google.com/sql/docs/mysql/admin-api/metrics<br>      duration         = string<br>      threshold_value  = string<br>      alignment_period = string<br>    }))<br>  }))</pre> | `null` | no |
+| <a name="input_authorized_networks"></a> [authorized\_networks](#input\_authorized\_networks) | n/a | <pre>list(object({ <br>    net_name = string <br>     ip = string  <br>  }))</pre> | `null` | no |
 | <a name="input_database_instance_name"></a> [database\_instance\_name](#input\_database\_instance\_name) | n/a | `string` | n/a | yes |
 | <a name="input_database_tier"></a> [database\_tier](#input\_database\_tier) | n/a | `string` | `"db-f1-micro"` | no |
 | <a name="input_database_version"></a> [database\_version](#input\_database\_version) | n/a | `string` | n/a | yes |
