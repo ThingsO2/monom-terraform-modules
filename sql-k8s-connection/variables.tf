@@ -64,3 +64,11 @@ variable "alert_policies" {
   }))
   default = null
 }
+
+variable "authorized_networks" {
+  type = list(object({
+    net_name = string
+    ip = string
+  }))
+  default = null
+}
