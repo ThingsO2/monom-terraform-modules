@@ -74,14 +74,11 @@ resource "google_compute_global_address" "this" {
   address_type = "EXTERNAL"
 }
 
-data "cloudflare_zone" "this" {
-  name = "monom.ai"
-}
-resource "cloudflare_record" "this" {
-  zone_id = data.cloudflare_zone.this.id
+resource "cloudflare_dns_record" "this" {
+  zone_id = "b9e914ceb58779b21228102ee51301a9"
   name    = "${local.domain}.${var.root_domain}."
-  type    = "A"
-  ttl     = "300"
+  content = google_compute_global_address.this.address
   proxied = var.proxied
-  value   = google_compute_global_address.this.address
+  ttl = 300
+  type = "A"
 }
