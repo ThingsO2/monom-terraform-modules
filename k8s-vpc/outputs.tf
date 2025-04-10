@@ -17,3 +17,7 @@ output "ip_range_pods" {
 output "network_id" {
   value = module.vpc.network.network.id
 }
+
+output "self_link" {
+  value = module.vpc.network.network_self_link
+}
