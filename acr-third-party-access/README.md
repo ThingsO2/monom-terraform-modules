@@ -41,3 +41,28 @@ No modules.
 | <a name="output_password1"></a> [password1](#output\_password1) | n/a |
 | <a name="output_token_id"></a> [token\_id](#output\_token\_id) | n/a |
 <!-- END_TF_DOCS -->
+
+## Example usage
+
+```hcl
+module "token" {
+  source   = "github.com/ThingsO2/monom-terraform-modules//acr-third-party-access?ref=v3.3.0"
+  registry = "containerregistry"
+  rg_name  = "resource-group-name"
+  name     = "thirdpartyname"
+  repository_access = [
+    "repositories/repository-name/content/read"
+  ]
+}
+
+output "password" {
+  value     = module.token.password1
+  sensitive = true
+}
+
+resource "local_file" "exprt" {
+  content  = module.token.password1
+  filename = "${path.module}/pass.txt"
+}
+
+```
